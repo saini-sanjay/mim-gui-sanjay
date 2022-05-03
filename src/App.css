@@ -1,38 +1,52 @@
-.App {
+#formcss{
+  background: #4CA1AF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+font-weight: bold;
+ 
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td{
+  padding-left: 5px;
+}
+.mytable{
+  width:21.5cm;
+  margin:auto;
+  font-family:  'Calibri';
+  font-size: 11pt;
+}
+#copybutton{
+  
+}
+.mycolumn{
+  width:8.5cm;
+  font-weight: bold;
+}
+
+.top-row{
+  height: 1.1cm;
   text-align: center;
+  font-size: 18pt;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bottom-row{
+    background-color: rgb(172,185,202);
+    font-weight: bold;
+  
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.my-row{
+  height:0.88cm;
+  text-align: initial;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#initial{
+  background-color: rgb(217,217,217);
 }
-
-.App-link {
-  color: #61dafb;
+#update{
+  background-color: rgb(255,230,153);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#restoration{
+  background-color: rgb(146,208,80);
 }
