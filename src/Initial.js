@@ -1,15 +1,39 @@
 import './App.css';
-import {formatDate,nextUpdateForInitial,selectElementContents} from './Dateformat';
+import {formatDate,nextUpdateForInitial,selectElementContents,formatDateTwo} from './Dateformat';
+import emailjs from '@emailjs/browser';
 
+function sendSMS(number,msg){
+  var templateParams = {
+    ticket: number,
+    message: msg
+};
 
+  emailjs.send('service_qp7r9l5', 'template_wza3icy',templateParams, 'VhHT2tewEIsLz03C0')
+  .then((result) => {
+      console.log(result.text);
+  }, (error) => {
+      console.log(error.text);
+  });
+};
+  
 
 
 function Initial(props) {
     const formik=props.data;
     const myDate=new Date(formik.values.incident_start_time);
     const time=formatDate(myDate);
+    const time2=formatDateTwo(myDate);
     const next=nextUpdateForInitial(formik);
-    
+    let msgbody=`
+    <div style="margin:0;color:red;">Incident No:${formik.values.incident}</div>
+    <div style="margin:0;">Severity: ${formik.values.severity}</div>
+    <div style="margin:0;">Impacted OPCO: ${formik.values.country}</div>
+    <div style="margin:0;">Impacted Application/s: ${formik.values.ip_details}</div>
+    <div style="margin:0;">Initial Issue Reported: ${formik.values.incident_description}</div>
+    <div style="margin:0;">Start Time (OPCO Time): ${time2}</div>
+    <div style="margin:0;">Status: In Progress</div>
+    <div style="margin:0;">Recovery Plan:${formik.values.comments} </div>    
+    `
 
   return (
       <div>
@@ -81,7 +105,11 @@ function Initial(props) {
     
   </div>
   <div className='d-flex justify-content-center'>
-  <button type="button" className="btn btn-success" onClick={()=>selectElementContents(document.getElementById('copytable'))}>Copy Initial Notification</button>
+  <button type="button" className="btn btn-success" onClick={()=>{
+    sendSMS(formik.values.incident,msgbody);
+  selectElementContents(document.getElementById('copytable'));
+  }
+  }>Copy Initial Notification</button>
   </div>
   
   <hr></hr>
